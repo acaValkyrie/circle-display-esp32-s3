@@ -50,7 +50,7 @@ public:
             cfg.offset_y = 0;
             cfg.dummy_read_pixel = 8;
             cfg.dummy_read_bits = 1;
-            cfg.offset_rotation = 3;
+            cfg.offset_rotation = 0;
             cfg.readable = true;
             cfg.invert = true;
             cfg.rgb_order = false;

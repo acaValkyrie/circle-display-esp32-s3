@@ -2,23 +2,20 @@
 #include <LovyanGFX.hpp>
 #include "lgfx.hpp"
 
-WaveshareRoundLCD lcd;
+static WaveshareRoundLCD lcd;
+static LGFX_Sprite sprite(&lcd);
 
 void setup() {
-  lcd.init();
-  // lcd.setRotation(3);
-  lcd.fillScreen(lcd.color888(255,0,255));
-  lcd.fillCircle(lcd.width()*0.5, lcd.height()*0.5, 30, lcd.color888(255,0,0));
-  lcd.printf("Hello, World!");
-  // lcd.setBrightness(255);
-  // pinMode(48, OUTPUT);
   neopixelWrite(48, 0, 0, 0);
+  lcd.init();
+  sprite.createSprite(lcd.width(), lcd.height());
 }
 
 void loop() {
-  lcd.startWrite();
-  lcd.fillCircle(lcd.width()*0.5, lcd.height()*0.5, 30, lcd.color888(255,0,0));
-  lcd.printf("Hello, World!");
-  lcd.endWrite();
+  sprite.startWrite();
+  sprite.fillCircle(lcd.width()*0.5, lcd.height()*0.5, 30, lcd.color888(255,0,0));
+  sprite.printf("Hello, World!");
+  sprite.endWrite();
+  sprite.pushSprite(&lcd, 0, 0);
   delay(500);
 }
